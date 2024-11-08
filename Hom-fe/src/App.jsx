@@ -16,7 +16,7 @@ const App = () => {
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/products');
+        const response = await fetch('https://viharrni-o1bl-backend.vercel.app/api/products');
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         setAllProducts(data); 
@@ -25,7 +25,7 @@ const App = () => {
         console.error('Error fetching products:', error);
         setSearchResults([]);  // Optionally show an error message or empty list
       }
-    };    
+    };
 
     fetchAllProducts();
   }, []);
@@ -33,7 +33,7 @@ const App = () => {
   const fetchSearchResults = async (term) => {
     setLoading(true); // Set loading to true when starting the search
     try {
-      const response = await fetch(`http://localhost:5000/api/products/search?query=${term}`);
+      const response = await fetch(`https://viharrni-o1bl-backend.vercel.app/api/products/search?query=${term}`);
       const data = await response.json();
       setSearchResults(data); // Update search results
     } catch (error) {
@@ -121,7 +121,6 @@ const App = () => {
         </div>
       </div>
 
-      
       {/* Display All Products Below Banner */}
       <div className="main-products">
         <h2>All Products</h2>
@@ -142,8 +141,6 @@ const App = () => {
           )}
         </div>
       </div>
-
-      
     </div>
   );
 };
