@@ -3,6 +3,7 @@ import { debounce } from 'lodash';
 import './App.css';
 import Navbar from './components/Navbar';
 import Banner from './components/Banner';
+import _ from 'lodash';
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');

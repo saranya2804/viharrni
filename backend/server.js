@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const productRoutes = require('./routes/productRoutes');
 require('dotenv').config();
+
 const app = express();
 
 // Middleware
@@ -15,8 +16,18 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log('MongoDB connection error:', err));
 
-// Routes
+// Root Route (Handle GET request to root)
+app.get('/', (req, res) => {
+  res.send('Server is up and running');
+});
+
+// Routes for products
 app.use('/api/products', productRoutes);
+
+// Catch-all route for any unknown paths
+app.all('*', (req, res) => {
+  res.status(404).send('Route not found');
+});
 
 // Start the server
 const PORT = process.env.PORT || 5000;

@@ -5,7 +5,7 @@ const router = express.Router();
 // Get all products
 router.get('/', async (req, res) => {
   try {
-    const products = await Product.find().select('id name price image description'); // You can adjust the fields as needed
+    const products = await Product.find().select('id name price image description');
     res.json(products);
   } catch (err) {
     res.status(500).send({ message: 'Error fetching products', error: err });
@@ -23,7 +23,7 @@ router.get('/search', async (req, res) => {
   try {
     const products = await Product.find({
       name: { $regex: query, $options: 'i' },
-    }).select('id name price image description'); // Only include relevant fields
+    }).select('id name price image description');
 
     res.json(products);
   } catch (err) {
